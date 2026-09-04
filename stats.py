@@ -17,5 +17,5 @@ def median(values):
     if n % 2 == 1:
         # PLANTED BUG (intentional): off-by-one for odd-length input;
         # the first production codetask must add tests and fix this.
-        return ordered[mid - 1]
+        return ordered[mid]
     return (ordered[mid - 1] + ordered[mid]) / 2
