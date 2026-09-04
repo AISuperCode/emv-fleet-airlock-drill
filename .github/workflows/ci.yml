@@ -6,11 +6,13 @@ on:
     branches: [develop]
 jobs:
   quality:
-    runs-on: ubuntu-latest
+    # Self-hosted fleet runner (Test node) — zero GitHub-hosted minutes for this private drill repo.
+    runs-on: [self-hosted, linux, x64]
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.11"
+      - name: Set up Python (local toolchain)
+        run: |
+          python3 --version
+          python3 -m pip install --quiet --user pytest
       - name: Run tests
-        run: python -m pytest -q
+        run: python3 -m pytest -q
